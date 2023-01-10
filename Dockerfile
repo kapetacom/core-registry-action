@@ -2,7 +2,7 @@
 FROM alpine:3.16
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-RUN apk add --no-cache bash jq curl npm
+RUN apk add --no-cache bash jq curl npm git
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

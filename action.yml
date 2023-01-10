@@ -5,6 +5,11 @@ inputs:
   action: 
     description: 'Registry action, like pull or push'
     required: true
+
+  credentials: 
+    description: 'Blockware credentials, typically a JWT token'
+    required: true
+
   npmrc:
     description: 'NPM registry configuration'
 
@@ -13,6 +18,7 @@ runs:
   image: 'Dockerfile'
   env:
     NPMRC: ${{ inputs.npmrc }}
+    BLOCKWARE_CREDENTIALS_TOKEN: ${{ inputs.credentials }} 
   args:
     - ${{ inputs.action }}
     
