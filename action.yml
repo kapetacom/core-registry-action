@@ -1,0 +1,18 @@
+# action.yml
+name: 'Core registry action'
+description: 'Interact with the Blockware registry'
+inputs:
+  action: 
+    description: 'Registry action, like pull or push'
+    required: true
+  npmrc:
+    description: 'NPM registry configuration'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    NPMRC: ${{ inputs.npmrc }}
+  args:
+    - ${{ inputs.action }}
+    
