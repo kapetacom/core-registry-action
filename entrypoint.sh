@@ -6,7 +6,7 @@ export CI=true
 npmrcfile=$(npm config get userconfig)
 echo "Updating $npmrcfile"
 mkdir -p $(dirname $npmrcfile) && touch $npmrcfile
-
+echo "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/" >> /github/home/.npmrc
 echo $NPMRC >> /github/home/.npmrc
 
 npm install -g @blockware/blockctl
