@@ -24,5 +24,5 @@ echo "********************************************"
 echo "************* Pushing to registry **********"
 echo "********************************************"
 
-blockctl registry $action -n
+blockctl registry $action --non-interactive --skip-linking --skip-install
 
