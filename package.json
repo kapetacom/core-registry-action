@@ -1,0 +1,33 @@
+{
+  "name": "core-registry-action",
+  "version": "0.0.1",
+  "description": "Action for interacting with the Blockware registry",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build src/action.ts -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockwarecom/core-registry-action.git"
+  },
+  "keywords": [
+    "github-action"
+  ],
+  "author": "Blockware",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blockwarecom/core-registry-action/issues"
+  },
+  "homepage": "https://github.com/blockwarecom/core-registry-action#readme",
+  "dependencies": {
+    "@actions/core": "1.10.0",
+    "@actions/exec": "1.1.1",
+    "@actions/io": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@vercel/ncc": "^0.36.1",
+    "typescript": "4.9.4"
+  }
+}
