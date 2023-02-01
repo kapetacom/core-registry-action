@@ -3985,7 +3985,7 @@ options.env = {
 };
 const npmrcpath = "/home/runner";
 _actions_core__WEBPACK_IMPORTED_MODULE_1__.debug("writing configuration to ${npmrcpath}");
-const data = "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/";
+const data = "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/\n";
 (0,fs__WEBPACK_IMPORTED_MODULE_2__.writeFileSync)(npmrcpath + "/.npmrc", data, {
     flag: "a+",
 });
@@ -3997,33 +3997,33 @@ try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@blockware/blockctl"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed("error installing blockctl: ${err}");
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error installing blockctl: ${err}`);
 }
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("git", ["config", "--global", "--add", "safe.directory", "/github/workspace"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed("error configuring git: ${err}");
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring git: ${err}`);
 }
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("git", ["remote", "set-head", "origin", "-a"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed("error configuring git remote: ${err}");
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring git remote: ${err}`);
 }
 output = "";
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["-g", "root"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed("error gettring npm user binary location: ${err}");
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error gettring npm user binary location: ${err}`);
 }
 const blockctlPath = output.trim() + "/@blockware/blockctl/bin/blockctl";
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(blockctlPath, ["init-defaults"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed("error configuring blockctl with init-default: ${err}");
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring blockctl with init-default: ${err}`);
 }
 const action = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("action");
 try {

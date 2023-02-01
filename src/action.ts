@@ -21,8 +21,7 @@ options.env = {
 
 const npmrcpath = "/home/runner";
 core.debug("writing configuration to ${npmrcpath}");
-const data =
-  "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/";
+const data = "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/\n";
 writeFileSync(npmrcpath + "/.npmrc", data, {
   flag: "a+",
 });
@@ -34,7 +33,7 @@ writeFileSync(npmrcpath + "/.npmrc", npmrc, {
 try {
   await exec.exec("npm", ["install", "-g", "@blockware/blockctl"], options);
 } catch (err: any) {
-  core.setFailed("error installing blockctl: ${err}");
+  core.setFailed(`error installing blockctl: ${err}`);
 }
 
 try {
@@ -44,20 +43,20 @@ try {
     options
   );
 } catch (err: any) {
-  core.setFailed("error configuring git: ${err}");
+  core.setFailed(`error configuring git: ${err}`);
 }
 
 try {
   await exec.exec("git", ["remote", "set-head", "origin", "-a"], options);
 } catch (err: any) {
-  core.setFailed("error configuring git remote: ${err}");
+  core.setFailed(`error configuring git remote: ${err}`);
 }
 
 output = "";
 try {
   await exec.exec("npm", ["-g", "root"], options);
 } catch (err: any) {
-  core.setFailed("error gettring npm user binary location: ${err}");
+  core.setFailed(`error gettring npm user binary location: ${err}`);
 }
 
 const blockctlPath = output.trim() + "/@blockware/blockctl/bin/blockctl";
@@ -65,7 +64,7 @@ const blockctlPath = output.trim() + "/@blockware/blockctl/bin/blockctl";
 try {
   await exec.exec(blockctlPath, ["init-defaults"], options);
 } catch (err: any) {
-  core.setFailed("error configuring blockctl with init-default: ${err}");
+  core.setFailed(`error configuring blockctl with init-default: ${err}`);
 }
 
 const action = core.getInput("action");
