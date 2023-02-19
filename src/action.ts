@@ -15,6 +15,7 @@ options.listeners = {
 const credentials = core.getInput("credentials");
 options.env = {
   CI: "true",
+  BLOCKWARE_CI: "true",
   ...process.env,
   BLOCKWARE_CREDENTIALS_TOKEN: credentials,
 };

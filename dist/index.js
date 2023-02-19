@@ -3980,6 +3980,7 @@ options.listeners = {
 const credentials = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("credentials");
 options.env = {
     CI: "true",
+    BLOCKWARE_CI: "true",
     ...process.env,
     BLOCKWARE_CREDENTIALS_TOKEN: credentials,
 };
