@@ -2,6 +2,7 @@
 # Set version to the first argument
 action=$1
 export CI=true
+export BLOCKWARE_CI=true
 
 npmrcfile=$(npm config get userconfig)
 echo "Updating $npmrcfile"
