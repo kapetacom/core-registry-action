@@ -79,6 +79,7 @@ try {
       "--non-interactive",
       "--skip-linking",
       "--skip-install",
+      "--ignore-working-directory"
     ],
     options
   );
