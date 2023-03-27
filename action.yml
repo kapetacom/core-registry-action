@@ -1,13 +1,13 @@
 # action.yml
 name: 'Core registry action'
-description: 'Interact with the Blockware registry'
+description: 'Interact with the Kapeta registry'
 inputs:
   action: 
     description: 'Registry action, like pull or push'
     required: true
 
   credentials: 
-    description: 'Blockware credentials, typically a JWT token'
+    description: 'Kapeta credentials, typically a JWT token'
     required: true
 
   npmrc:

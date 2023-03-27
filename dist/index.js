@@ -3965,9 +3965,6 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_exec__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_exec__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(186);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(147);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 let output = "";
@@ -3980,22 +3977,12 @@ options.listeners = {
 const credentials = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("credentials");
 options.env = {
     CI: "true",
-    BLOCKWARE_CI: "true",
+    KAPETA_CI: "true",
     ...process.env,
-    BLOCKWARE_CREDENTIALS_TOKEN: credentials,
+    KAPETA_CREDENTIALS_TOKEN: credentials,
 };
-const npmrcpath = "/home/runner";
-_actions_core__WEBPACK_IMPORTED_MODULE_1__.debug("writing configuration to ${npmrcpath}");
-const data = "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/\n";
-(0,fs__WEBPACK_IMPORTED_MODULE_2__.writeFileSync)(npmrcpath + "/.npmrc", data, {
-    flag: "a+",
-});
-const npmrc = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("npmrc");
-(0,fs__WEBPACK_IMPORTED_MODULE_2__.writeFileSync)(npmrcpath + "/.npmrc", npmrc, {
-    flag: "a+",
-});
 try {
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@blockware/blockctl"], options);
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@kapeta/blockctl"], options);
 }
 catch (err) {
     _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error installing blockctl: ${err}`);
@@ -4019,7 +4006,7 @@ try {
 catch (err) {
     _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error gettring npm user binary location: ${err}`);
 }
-const blockctlPath = output.trim() + "/@blockware/blockctl/bin/blockctl";
+const blockctlPath = output.trim() + "/@kapeta/blockctl/bin/blockctl";
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(blockctlPath, ["init-defaults"], options);
 }
@@ -4038,7 +4025,7 @@ try {
     ], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error pusing to Blockware registry ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error pusing to Kapeta registry ${err}`);
 }
 
 __webpack_async_result__();

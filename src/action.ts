@@ -15,24 +15,13 @@ options.listeners = {
 const credentials = core.getInput("credentials");
 options.env = {
   CI: "true",
-  BLOCKWARE_CI: "true",
+  KAPETA_CI: "true",
   ...process.env,
-  BLOCKWARE_CREDENTIALS_TOKEN: credentials,
+  KAPETA_CREDENTIALS_TOKEN: credentials,
 };
 
-const npmrcpath = "/home/runner";
-core.debug("writing configuration to ${npmrcpath}");
-const data = "@blockware:registry=https://europe-npm.pkg.dev/blockware-cloud/blockware-npm-public/\n";
-writeFileSync(npmrcpath + "/.npmrc", data, {
-  flag: "a+",
-});
-
-const npmrc = core.getInput("npmrc");
-writeFileSync(npmrcpath + "/.npmrc", npmrc, {
-  flag: "a+",
-});
 try {
-  await exec.exec("npm", ["install", "-g", "@blockware/blockctl"], options);
+  await exec.exec("npm", ["install", "-g", "@kapeta/blockctl"], options);
 } catch (err: any) {
   core.setFailed(`error installing blockctl: ${err}`);
 }
@@ -60,7 +49,7 @@ try {
   core.setFailed(`error gettring npm user binary location: ${err}`);
 }
 
-const blockctlPath = output.trim() + "/@blockware/blockctl/bin/blockctl";
+const blockctlPath = output.trim() + "/@kapeta/blockctl/bin/blockctl";
 
 try {
   await exec.exec(blockctlPath, ["init-defaults"], options);
@@ -84,5 +73,5 @@ try {
     options
   );
 } catch (err: any) {
-  core.setFailed(`error pusing to Blockware registry ${err}`);
+  core.setFailed(`error pusing to Kapeta registry ${err}`);
 }

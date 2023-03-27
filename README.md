@@ -1,6 +1,6 @@
 # core-regsitry-action
 
-Interact with the Blockware registry
+Interact with the Kapeta registry
 
 ## Inputs
 
@@ -11,7 +11,7 @@ Interact with the Blockware registry
 ## Example usage
 
 ```yaml
-uses: blockware/core-registry-action@v1
+uses: kapeta/core-registry-action@v1
 with:
   action: 'push'
 ```

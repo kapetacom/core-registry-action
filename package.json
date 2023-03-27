@@ -1,7 +1,7 @@
 {
   "name": "core-registry-action",
   "version": "0.0.1",
-  "description": "Action for interacting with the Blockware registry",
+  "description": "Action for interacting with the Kapeta registry",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +14,7 @@
   "keywords": [
     "github-action"
   ],
-  "author": "Blockware",
+  "author": "Kapeta",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/blockwarecom/core-registry-action/issues"
