@@ -1,7 +1,6 @@
 import * as exec from "@actions/exec";
 import * as core from "@actions/core";
 
-import { writeFileSync } from "fs";
 
 let output = "";
 
@@ -13,6 +12,9 @@ options.listeners = {
 };
 
 const credentials = core.getInput("credentials");
+if(credentials === "") {
+  core.setFailed("credentials is required and shouldn't be empty");
+}
 options.env = {
   CI: "true",
   KAPETA_CI: "true",
