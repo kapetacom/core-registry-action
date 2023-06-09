@@ -23,7 +23,7 @@ options.env = {
 };
 
 try {
-  await exec.exec("npm", ["install", "-g", "@kapeta/blockctl"], options);
+  await exec.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 } catch (err: any) {
   core.setFailed(`error installing blockctl: ${err}`);
 }
@@ -51,12 +51,12 @@ try {
   core.setFailed(`error gettring npm user binary location: ${err}`);
 }
 
-const blockctlPath = output.trim() + "/@kapeta/blockctl/bin/blockctl";
+const blockctlPath = output.trim() + "/@kapeta/kap/bin/kap";
 
 try {
   await exec.exec(blockctlPath, ["init-defaults"], options);
 } catch (err: any) {
-  core.setFailed(`error configuring blockctl with init-default: ${err}`);
+  core.setFailed(`error configuring kap with init-default: ${err}`);
 }
 
 const action = core.getInput("action");
