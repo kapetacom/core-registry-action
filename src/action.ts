@@ -1,7 +1,6 @@
 import * as exec from "@actions/exec";
 import * as core from "@actions/core";
 
-
 let output = "";
 
 const options: exec.ExecOptions = {};
@@ -12,7 +11,7 @@ options.listeners = {
 };
 
 const credentials = core.getInput("credentials");
-if(credentials === "") {
+if (credentials === "") {
   core.setFailed("credentials is required and shouldn't be empty");
 }
 options.env = {
@@ -25,7 +24,7 @@ options.env = {
 try {
   await exec.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 } catch (err: any) {
-  core.setFailed(`error installing blockctl: ${err}`);
+  core.setFailed(`error installing kap cli: ${err}`);
 }
 
 try {
@@ -46,15 +45,15 @@ try {
 
 output = "";
 try {
-  await exec.exec("npm", ["-g", "root"], options);
+  await exec.exec("npm", ["exec", "-c", "which kap"], options);
 } catch (err: any) {
-  core.setFailed(`error gettring npm user binary location: ${err}`);
+  core.setFailed(`error gettring kap binary location: ${err}`);
 }
 
-const blockctlPath = output.trim() + "/@kapeta/kap/bin/kap";
+const kapCliPath = output.trim();
 
 try {
-  await exec.exec(blockctlPath, ["init-defaults"], options);
+  await exec.exec(kapCliPath, ["init-defaults"], options);
 } catch (err: any) {
   core.setFailed(`error configuring kap with init-default: ${err}`);
 }
@@ -63,14 +62,14 @@ const action = core.getInput("action");
 
 try {
   await exec.exec(
-    blockctlPath,
+    kapCliPath,
     [
       "registry",
       action,
       "--non-interactive",
       "--skip-linking",
       "--skip-install",
-      "--ignore-working-directory"
+      "--ignore-working-directory",
     ],
     options
   );

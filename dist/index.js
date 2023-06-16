@@ -3967,7 +3967,7 @@ try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error installing blockctl: ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error installing kap cli: ${err}`);
 }
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("git", ["config", "--global", "--add", "safe.directory", "/github/workspace"], options);
@@ -3983,27 +3983,27 @@ catch (err) {
 }
 output = "";
 try {
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["-g", "root"], options);
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["exec", "-c", "which kap"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error gettring npm user binary location: ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error gettring kap binary location: ${err}`);
 }
-const blockctlPath = output.trim() + "/@kapeta/kap/bin/kap";
+const kapCliPath = output.trim();
 try {
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(blockctlPath, ["init-defaults"], options);
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(kapCliPath, ["init-defaults"], options);
 }
 catch (err) {
     _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring kap with init-default: ${err}`);
 }
 const action = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("action");
 try {
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(blockctlPath, [
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(kapCliPath, [
         "registry",
         action,
         "--non-interactive",
         "--skip-linking",
         "--skip-install",
-        "--ignore-working-directory"
+        "--ignore-working-directory",
     ], options);
 }
 catch (err) {
