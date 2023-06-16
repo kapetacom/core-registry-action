@@ -53,9 +53,9 @@ try {
 const kapCliPath = output.trim();
 
 try {
-  await exec.exec(kapCliPath, ["init-defaults"], options);
+  await exec.exec(kapCliPath, ["init"], options);
 } catch (err: any) {
-  core.setFailed(`error configuring kap with init-default: ${err}`);
+  core.setFailed(`error configuring kap with init: ${err}`);
 }
 
 const action = core.getInput("action");

@@ -4,7 +4,7 @@ action=$1
 export CI=true
 export KAPETA_CI=true
 
-npm install -g @kapeta/blockctl
+npm install -g @kapeta/kap
 
 cd $GITHUB_WORKSPACE
 
@@ -14,10 +14,10 @@ echo "trying to auto guess head"
 git remote set-head origin -a
 
 
-blockctl init-defaults
+kap init
 echo "********************************************"
 echo "************* Pushing to registry **********"
 echo "********************************************"
 
-blockctl registry $action --non-interactive --skip-linking --skip-install
+kap registry $action --non-interactive --skip-linking --skip-install
 

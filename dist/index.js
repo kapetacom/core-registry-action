@@ -3990,10 +3990,10 @@ catch (err) {
 }
 const kapCliPath = output.trim();
 try {
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(kapCliPath, ["init-defaults"], options);
+    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(kapCliPath, ["init"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring kap with init-default: ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring kap with init: ${err}`);
 }
 const action = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("action");
 try {
