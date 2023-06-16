@@ -4003,7 +4003,7 @@ try {
         "--non-interactive",
         "--skip-linking",
         "--skip-install",
-        "--ignore-working-directory"
+        "--ignore-working-directory",
     ], options);
 }
 catch (err) {

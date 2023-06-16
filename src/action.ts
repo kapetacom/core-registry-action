@@ -1,7 +1,6 @@
 import * as exec from "@actions/exec";
 import * as core from "@actions/core";
 
-
 let output = "";
 
 const options: exec.ExecOptions = {};
@@ -12,7 +11,7 @@ options.listeners = {
 };
 
 const credentials = core.getInput("credentials");
-if(credentials === "") {
+if (credentials === "") {
   core.setFailed("credentials is required and shouldn't be empty");
 }
 options.env = {
@@ -70,7 +69,7 @@ try {
       "--non-interactive",
       "--skip-linking",
       "--skip-install",
-      "--ignore-working-directory"
+      "--ignore-working-directory",
     ],
     options
   );
