@@ -3,7 +3,7 @@ name: 'Core registry action'
 description: 'Interact with the Kapeta registry'
 inputs:
   action: 
-    description: 'Registry action, like pull or push'
+    description: 'Registry action, like publish or clone'
     required: true
 
   credentials: 

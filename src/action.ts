@@ -66,7 +66,6 @@ try {
     [
       "registry",
       action,
-      "--non-interactive",
       "--skip-linking",
       "--skip-install",
       "--ignore-working-directory",
