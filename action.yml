@@ -1,18 +1,15 @@
 # action.yml
-name: 'Core registry action'
+name: 'Kapeta Registry'
 description: 'Interact with the Kapeta registry'
 inputs:
-  action: 
+  action:
     description: 'Registry action, like publish or validate'
     required: true
 
-  credentials: 
+  credentials:
     description: 'Kapeta credentials, typically a JWT token'
     required: true
 
-  npmrc:
-    description: 'NPM registry configuration'
-
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'

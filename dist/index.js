@@ -3986,7 +3986,7 @@ try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["exec", "-c", "which kap"], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error gettring kap binary location: ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error getting kap binary location: ${err}`);
 }
 const kapCliPath = output.trim();
 try {
@@ -4000,14 +4000,13 @@ try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec(kapCliPath, [
         "registry",
         action,
-        "--non-interactive",
         "--skip-linking",
         "--skip-install",
         "--ignore-working-directory",
     ], options);
 }
 catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error pusing to Kapeta registry ${err}`);
+    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error running kapeta command ${err}`);
 }
 
 __webpack_async_result__();

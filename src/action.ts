@@ -73,5 +73,5 @@ try {
     options
   );
 } catch (err: any) {
-  core.setFailed(`error pusing to Kapeta registry ${err}`);
+  core.setFailed(`error running kapeta command ${err}`);
 }
