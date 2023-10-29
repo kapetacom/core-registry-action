@@ -1,21 +1,27 @@
-# Kapeta Registry Action
+# Kapeta Github Action
 
-Interact with the Kapeta registry
+Helper action for performing CI/CD actions on Kapeta repositories
 
 ## Inputs
 
-## `action`
-**Required** The action to invoke. Typically "push"
+### `credentials`
+**Required** A valid JWT token - must be base64 encoded. 
+Create a service account in your Kapeta account - and use the JWT token from that. 
+Note that it must be allowed to read and write to your registry.
 
-## `credentials`
-**Required** A valid JWT token - must be base64 encoded. Create a service account in your Kapeta account - and use the JWT token from that. Note that it must be able to write to your registry.
+### `action`
+**Required** The action to invoke
+
+_Possible actions are:_
+- `publish` - Publish the current version of the package to the registry
+- `validate` - Validate the kapeta.yml
 
 ## Example usage
 
 ```yaml
 uses: kapeta/core-registry-action@v1
 with:
-  action: 'push'
+  action: 'publish'
   credentials: ${{ secrets.BASE64_ENCODED_KAPETA_JWT_TOKEN }}
 ```
 
