@@ -47,7 +47,7 @@ output = "";
 try {
   await exec.exec("npm", ["exec", "-c", "which kap"], options);
 } catch (err: any) {
-  core.setFailed(`error gettring kap binary location: ${err}`);
+  core.setFailed(`error getting kap binary location: ${err}`);
 }
 
 const kapCliPath = output.trim();
