@@ -1,6 +1,9 @@
 # action.yml
 name: 'Kapeta Registry'
 description: 'Interact with the Kapeta registry'
+branding:
+  icon: arrow-up-circle
+  color: gray-dark
 inputs:
   action:
     description: 'Registry action, like publish or validate'
