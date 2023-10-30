@@ -19,7 +19,7 @@ _Possible actions are:_
 ## Example usage
 
 ```yaml
-uses: kapeta/core-registry-action@v1
+uses: kapeta/core-registry-action@v3
 with:
   action: 'publish'
   credentials: ${{ secrets.BASE64_ENCODED_KAPETA_JWT_TOKEN }}
