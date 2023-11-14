@@ -3944,6 +3944,15 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_exec__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_exec__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(186);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(147);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(37);
+/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(os__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(17);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
 
 
 let output = "";
@@ -3963,6 +3972,14 @@ options.env = {
     ...process.env,
     KAPETA_CREDENTIALS_TOKEN: credentials,
 };
+const baseUrl = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("base_url");
+if (baseUrl != "") {
+    options.env = {
+        ...options.env,
+        KAPETA_SERVICE_URL: baseUrl,
+    };
+}
+const staging = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getBooleanInput("staging");
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 }
@@ -3994,6 +4011,20 @@ try {
 }
 catch (err) {
     _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring kap with init: ${err}`);
+}
+if (staging) {
+    const kapetaHome = path__WEBPACK_IMPORTED_MODULE_4__.join(os__WEBPACK_IMPORTED_MODULE_3__.homedir(), '.kapeta');
+    const registryJson = path__WEBPACK_IMPORTED_MODULE_4__.join(kapetaHome, 'registry.json');
+    const registryJsonContent = `{
+    "registry": {
+        "url": "https://registry.staging.kapeta.com",
+        "providers": "https://providers.staging.kapeta.com",
+        "npm": "https://npm.staging.kapeta.com",
+        "maven": "https://maven.staging.kapeta.com",
+        "docker": "https://docker.staging.kapeta.com"
+    }
+  }`;
+    fs__WEBPACK_IMPORTED_MODULE_2__.writeFileSync(registryJson, registryJsonContent);
 }
 const action = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("action");
 try {
