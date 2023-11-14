@@ -1,5 +1,8 @@
 import * as exec from "@actions/exec";
 import * as core from "@actions/core";
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
 
 let output = "";
 
@@ -14,6 +17,7 @@ const credentials = core.getInput("credentials");
 if (credentials === "") {
   core.setFailed("credentials is required and shouldn't be empty");
 }
+
 options.env = {
   CI: "true",
   KAPETA_CI: "true",
@@ -21,6 +25,15 @@ options.env = {
   KAPETA_CREDENTIALS_TOKEN: credentials,
 };
 
+const baseUrl = core.getInput("base_url");
+if (baseUrl != "") {
+  options.env = {
+    ...options.env,
+    KAPETA_SERVICE_URL: baseUrl,
+  };
+}
+
+const staging = core.getBooleanInput("staging");
 try {
   await exec.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 } catch (err: any) {
@@ -56,6 +69,22 @@ try {
   await exec.exec(kapCliPath, ["init"], options);
 } catch (err: any) {
   core.setFailed(`error configuring kap with init: ${err}`);
+}
+
+if (staging) {
+  const kapetaHome = path.join(os.homedir(), '.kapeta');
+  const registryJson = path.join(kapetaHome, 'registry.json');
+  const registryJsonContent = 
+  `{
+    "registry": {
+        "url": "https://registry.staging.kapeta.com",
+        "providers": "https://providers.staging.kapeta.com",
+        "npm": "https://npm.staging.kapeta.com",
+        "maven": "https://maven.staging.kapeta.com",
+        "docker": "https://docker.staging.kapeta.com"
+    }
+  }`;
+  fs.writeFileSync(registryJson, registryJsonContent);
 }
 
 const action = core.getInput("action");
