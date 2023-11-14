@@ -13,6 +13,14 @@ inputs:
     description: 'Kapeta credentials, typically a JWT token'
     required: true
 
+  staging:
+    description: 'Kapeta staging, true or false'
+    required: false
+
+  base_url:
+    description: 'Kapeta base_url, typically used in combination with "staging"'
+    required: false
+
 runs:
   using: 'node20'
   main: 'dist/index.js'
