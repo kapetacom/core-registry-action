@@ -3973,13 +3973,12 @@ options.env = {
     KAPETA_CREDENTIALS_TOKEN: credentials,
 };
 const baseUrl = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("base_url");
-if (baseUrl != "") {
+if (baseUrl !== "") {
     options.env = {
         ...options.env,
         KAPETA_SERVICE_URL: baseUrl,
     };
 }
-const staging = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getBooleanInput("staging");
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 }
@@ -4012,6 +4011,7 @@ try {
 catch (err) {
     _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring kap with init: ${err}`);
 }
+const staging = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("staging") !== "" && _actions_core__WEBPACK_IMPORTED_MODULE_1__.getBooleanInput("staging");
 if (staging) {
     const kapetaHome = path__WEBPACK_IMPORTED_MODULE_4__.join(os__WEBPACK_IMPORTED_MODULE_3__.homedir(), '.kapeta');
     const registryJson = path__WEBPACK_IMPORTED_MODULE_4__.join(kapetaHome, 'registry.json');
