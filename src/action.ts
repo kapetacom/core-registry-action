@@ -26,14 +26,13 @@ options.env = {
 };
 
 const baseUrl = core.getInput("base_url");
-if (baseUrl != "") {
+if (baseUrl !== "") {
   options.env = {
     ...options.env,
     KAPETA_SERVICE_URL: baseUrl,
   };
 }
 
-const staging = core.getBooleanInput("staging");
 try {
   await exec.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 } catch (err: any) {
@@ -71,6 +70,7 @@ try {
   core.setFailed(`error configuring kap with init: ${err}`);
 }
 
+const staging = core.getInput("staging") !== "" && core.getBooleanInput("staging");
 if (staging) {
   const kapetaHome = path.join(os.homedir(), '.kapeta');
   const registryJson = path.join(kapetaHome, 'registry.json');
