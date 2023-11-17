@@ -3998,11 +3998,13 @@ try {
 catch (err) {
     _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring git: ${err}`);
 }
-try {
-    await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("git", ["remote", "set-head", "origin", "-a"], options);
-}
-catch (err) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring git remote: ${err}`);
+if (kapetaReleaseBranch == "") {
+    try {
+        await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("git", ["remote", "set-head", "origin", "-a"], options);
+    }
+    catch (err) {
+        _actions_core__WEBPACK_IMPORTED_MODULE_1__.setFailed(`error configuring git remote: ${err}`);
+    }
 }
 output = "";
 try {
