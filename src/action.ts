@@ -33,6 +33,14 @@ if (baseUrl !== "") {
   };
 }
 
+const kapetaReleaseBranch = core.getInput("release_branch");
+if (kapetaReleaseBranch != "") {
+  options.env = {
+    ...options.env,
+    KAPETA_RELEASE_BRANCH: kapetaReleaseBranch,
+  };
+} 
+
 try {
   await exec.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 } catch (err: any) {

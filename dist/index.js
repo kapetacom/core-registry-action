@@ -3979,6 +3979,13 @@ if (baseUrl !== "") {
         KAPETA_SERVICE_URL: baseUrl,
     };
 }
+const kapetaReleaseBranch = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("release_branch");
+if (kapetaReleaseBranch != "") {
+    options.env = {
+        ...options.env,
+        KAPETA_RELEASE_BRANCH: kapetaReleaseBranch,
+    };
+}
 try {
     await _actions_exec__WEBPACK_IMPORTED_MODULE_0__.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 }
