@@ -57,7 +57,7 @@ try {
   core.setFailed(`error configuring git: ${err}`);
 }
 
-if (kapetaReleaseBranch == "") {
+if (!kapetaReleaseBranch) {
   try {
     await exec.exec("git", ["remote", "set-head", "origin", "-a"], options);
   } catch (err: any) {
