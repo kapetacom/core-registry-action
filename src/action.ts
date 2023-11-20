@@ -33,6 +33,14 @@ if (baseUrl !== "") {
   };
 }
 
+const kapetaReleaseBranch = core.getInput("release_branch");
+if (kapetaReleaseBranch != "") {
+  options.env = {
+    ...options.env,
+    KAPETA_RELEASE_BRANCH: kapetaReleaseBranch,
+  };
+} 
+
 try {
   await exec.exec("npm", ["install", "-g", "@kapeta/kap"], options);
 } catch (err: any) {
@@ -49,10 +57,12 @@ try {
   core.setFailed(`error configuring git: ${err}`);
 }
 
-try {
-  await exec.exec("git", ["remote", "set-head", "origin", "-a"], options);
-} catch (err: any) {
-  core.setFailed(`error configuring git remote: ${err}`);
+if (!kapetaReleaseBranch) {
+  try {
+    await exec.exec("git", ["remote", "set-head", "origin", "-a"], options);
+  } catch (err: any) {
+    core.setFailed(`error configuring git remote: ${err}`);
+  }
 }
 
 output = "";

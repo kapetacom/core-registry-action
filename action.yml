@@ -21,6 +21,10 @@ inputs:
     description: 'Kapeta base_url, typically used in combination with "staging"'
     required: false
 
+  release_branch:
+    description: 'Kapeta release_branch, when release branch is not the default branch'
+    required: false
+
 runs:
   using: 'node20'
   main: 'dist/index.js'
