@@ -33,4 +33,16 @@ please checkout eveything using. This is needed for conventional commits and ver
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-``` 
+```
+
+### Multi-Platform builds
+
+Kapeta uses docker to build the images. To make these multi-platform you need to add QEMU and the BuildX action before running this action:
+```
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+```
+See https://docs.docker.com/build/ci/github-actions/multi-platform/ for more information about multi-platform builds with Github Actions.
+
