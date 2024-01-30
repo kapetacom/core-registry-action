@@ -3972,6 +3972,10 @@ options.env = {
     ...process.env,
     KAPETA_CREDENTIALS_TOKEN: credentials,
 };
+const cwd = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("working_directory");
+if (cwd !== "") {
+    options.cwd = cwd;
+}
 const baseUrl = _actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput("base_url");
 if (baseUrl !== "") {
     options.env = {

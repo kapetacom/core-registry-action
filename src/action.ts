@@ -25,6 +25,11 @@ options.env = {
   KAPETA_CREDENTIALS_TOKEN: credentials,
 };
 
+const cwd = core.getInput("working_directory");
+if (cwd !== "") {
+  options.cwd = cwd;
+}
+
 const baseUrl = core.getInput("base_url");
 if (baseUrl !== "") {
   options.env = {
