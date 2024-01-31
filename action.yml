@@ -25,6 +25,10 @@ inputs:
     description: 'Kapeta release_branch, when release branch is not the default branch'
     required: false
 
+  working_directory:
+    description: 'Kapeta working_directory, when working directory is not the default directory'
+    required: false
+
 runs:
   using: 'node20'
   main: 'dist/index.js'
